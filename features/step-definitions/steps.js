@@ -3,6 +3,7 @@ const { Given, When, Then } = require('@wdio/cucumber-framework');
 const LoginPage = require('../pageobjects/login.page');
 const SecurePage = require('../pageobjects/secure.page');
 const Reusable  = require("../pageobjects/reusable");
+const { ANDROID_CONFIG } = require('@wdio/cli/build/constants');
 
 const pages = {
     login: LoginPage
@@ -56,11 +57,12 @@ Given(/^I am on the login page$/, async () => {
     await driver.pause(2000);
     let obj = await $("//android.widget.TextView[@text='"+LinkName+"']");
     await obj.click();
-    await driver.pause(2000);
+    await driver.pause(4000);
   });
   
   Then(/^I switch back to the app$/, async () => {
-    await browser.back();
+    await browser.pressKeyCode(4);
+    await driver.pause(8000);
   });
 
   Given(/^I am on the Login page$/, async () => {

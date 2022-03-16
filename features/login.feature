@@ -29,13 +29,11 @@ Feature: Login functionality of the app
   #     | Tester2021 | Test123456 | 1234    |
 
   @testrail @1496
-  Scenario Outline: Navigate to "Opret Log ind" and back
+  Scenario: Navigate to "Opret Log ind" and back
     When I tap on the link "Opret Log ind"
     Then I switch back to the app
     Then I am on the Login page
-    Examples:
-      | Username   |
-      | Tester2021 |
+  
 
 # @testrail @1500
 # Scenario: Try to login with empty fields
