@@ -7,11 +7,21 @@ class Reusable extends Page {
   /**
    * define selectors using getter methods
    */
-  
+
   // Reusable Methods
-  async subCheckDisplayed(name){
+  async subCheckDisplayed(name) {
     await driver.pause(1000);
-    await expect("//*[@text='"+name+"']").toBeDisplayed();
+    let obj = await $("//*[@text='" + name + "']");
+    await expect(obj).toBeDisplayed();
+  }
+
+  async setPin(pincode) {
+    let arrPin = await [...pincode];
+    for (const digit of arrPin) {
+      let button = await $("//android.widget.TextView[@text='" + digit + "']");
+      button.click();
+      await driver.pause(1000);
+    }
   }
 }
 
