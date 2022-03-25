@@ -31,7 +31,8 @@ exports.config = {
     ],
     // Patterns to exclude.
     exclude: [
-        './src/featureFiles/sampleTest.feature'
+        './src/featureFiles/sampleTest.feature',
+        './src/featureFiles/Login/login.feature'
     ],
     //
     // ============
