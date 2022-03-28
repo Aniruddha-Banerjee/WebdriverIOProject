@@ -34,26 +34,7 @@ Feature: Login functionality of the app
 #     | Test1234 |
 
 
-# Scenario Outline: Login with pin code
-#   Given I open the app not from fresh in "Test" region
-#   When I submit with valid pin code "<Pincode>"
-#   Then I am on the dashboard screen
-#   Then I close the App
-#   Examples:
-#     | Pincode |
-#     | 1234    |
-
-
-# Scenario Outline: Try to login with invalid pin code
-#   Given I open the app not from fresh in "Test" region
-#   When I tap on 4 digits pin "<InvalidPinCode>" that is not my valid pin code
-#   Then I am on the pin code screen
-#   Then I close the App
-#   Examples:
-#     | InvalidPinCode |
-#     | 9876           |
-
-
+#  @androidAppNoreset @login @local
 # Scenario Outline: Too many pin code tries
 #   Given I open the app not from fresh in "Test" region
 #   When I tap on 4 digits "<InvalidPinCode>" that is not my valid pin code for 4 times
