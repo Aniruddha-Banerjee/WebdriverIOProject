@@ -3,6 +3,8 @@ class LoginScreen{
         this.txtbxUserName='(//android.widget.EditText)[1]';
         this.txtbxPassword='(//android.widget.EditText)[2]';
         this.btnLogin='//android.widget.TextView[@text="Login"]';
+        this.linkNewMusicLoginExtraSubscription='//android.widget.Button[contains(@text,"YouSee Musik")]';
+        this.linkLoginLimitedAccess='//android.widget.Button[contains(@text,"sms-kode")]';
     }
 }
 module.exports=new LoginScreen();

@@ -5,6 +5,7 @@ Feature: Navigate to "Opret Log ind" and back
 Scenario: Navigate to "Opret Log ind" and back
   Given I open the App
   When I tap on the link "Opret Log ind"
-  Then I switch back to the app
+  Then I am on the page label "Opret dit YouSee Login"
+  Then I click back
   Then I am on the Login page
   Then I close the App

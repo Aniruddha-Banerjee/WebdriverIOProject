@@ -9,6 +9,7 @@ class LoginPage{
 
     launchApp(){
         ActionHelper.launchApp();
+        ActionHelper.pause(2);
     }
 
     closeApp(){

@@ -15,7 +15,7 @@ Then(/^I close the App$/, () => {
     loginpage.closeApp();
 });
 
-Then(/^I switch back to the app$/, () => {
+Then(/^I click back$/, () => {
     ActionHelper.back();
     ActionHelper.pause(3);
 });
@@ -40,10 +40,8 @@ Then(/^I inserts password (\w+)$/, (password) => {
 Then(/^I am on the (\w+) page$/, async (pageName) => {
     switch(pageName.toLowerCase()){
     case 'home': await loginpage.subCheckDisplayed('HomeScreen');
-    // loginpage.verifyDisplay(HomeScreen.lblHomeScreen);
         break;
     case 'login': await loginpage.subCheckDisplayed('Brugernavn');
-    // loginpage.verifyDisplay(LoginScreen.txtbxUserName);
         break;
     }    
 });
@@ -54,8 +52,22 @@ Then(/^Set pin code (\w+) if asked$/, (pinCode) => {
 });   
 
 When('I tap on the link {string}', (LinkName) => {
-    ActionHelper.click('//android.widget.TextView[@text=\'' + LinkName + '\']');
+    switch(LinkName){
+    case 'Create YouSee Music Login for Extra Login':
+        ActionHelper.click(LoginScreen.linkNewMusicLoginExtraSubscription);
+        break;
+    case 'Limited Access Login using sms code':
+        ActionHelper.click(LoginScreen.linkLoginLimitedAccess);
+        break;
+    default: 
+        ActionHelper.click('//*[@text=\'' + LinkName + '\']');
+        break;
+    } 
     ActionHelper.pause(3);   
+});
+
+Then('I am on the page label {string}', (LabelName) => {
+    loginpage.subCheckDisplayed(LabelName);  
 });
 
 Then('An Error massage is shown where the text says {string}',(errorText) => {
@@ -72,4 +84,12 @@ When(/^I inserts 4 digits pin (\w+)$/, (pincode) => {
   
 When(/^inserts the same 4 digits pin (\w+) again$/, (pincode) => {
     ActionHelper.setPin(pincode);
+});
+
+Then('Test {string}',(sampleText) => {
+    let TextXpath='//*[@text=\'' + sampleText + '\']';
+    // eslint-disable-next-line no-console
+    console.log(TextXpath);
+    // eslint-disable-next-line no-console
+    console.log(ActionHelper.isVisible(TextXpath));
 });
