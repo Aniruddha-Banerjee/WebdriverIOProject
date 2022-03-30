@@ -71,6 +71,7 @@ Then('I am on the page label {string}', (LabelName) => {
 });
 
 Then('An Error massage is shown where the text says {string}',(errorText) => {
+    console.log(ActionHelper.isVisible);
     loginpage.subCheckDisplayed(errorText);
 });
 
