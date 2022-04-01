@@ -1,7 +1,7 @@
 @login
 Feature: Navigate to "Opret YouSee mobil-login" for YouSee Musik and back
 
-@androidApp @local @login 
+@androidApp @local @login
 Scenario: Navigate to "Opret YouSee mobil-login" for YouSee Musik and back
   Given I open the App
   When I tap on the link "Opret Log ind"
