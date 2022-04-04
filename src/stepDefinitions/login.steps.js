@@ -24,7 +24,9 @@ When(/^I tap on the (\w+) button$/, (buttonName) => {
     switch(buttonName.toLowerCase()){
     case 'login': ActionHelper.click(LoginScreen.btnLogin); 
         ActionHelper.pause(2);
-        ActionHelper.click(LoginScreen.btnLogin);
+        if(ActionHelper.isVisible(LoginScreen.btnLogin)==true){
+            ActionHelper.click(LoginScreen.btnLogin);
+        }
         ActionHelper.pause(2);
         break;
     }    

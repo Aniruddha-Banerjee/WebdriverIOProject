@@ -1,7 +1,7 @@
 @login
 Feature: Create pin code
 
-@androidApp @login @local @androidAppNoreset 
+@androidApp @login @local @androidAppNoreset @Test
 Scenario Outline: Create pin code
 Given I open the App
 Then I inserts username <Username>
