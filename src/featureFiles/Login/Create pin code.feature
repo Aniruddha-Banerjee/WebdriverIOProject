@@ -10,7 +10,7 @@ When I tap on the Login button
 Then I am on the create pin code screen
 When I inserts 4 digits pin <Pincode>
 And inserts the same 4 digits pin <Pincode> again
-Then I am on the Home page
+Then I am on the Overview page
 Then I close the App
 
 Examples:
