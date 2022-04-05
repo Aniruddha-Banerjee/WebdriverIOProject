@@ -117,9 +117,11 @@ exports.config = {
   // your test setup with almost no effort. Unlike plugins, they don't add new
   // commands. Instead, they hook themselves up into the test process.
   services: [
+
     // ['appium',{
     //     command: 'appium',
     // }]
+
   ],
   // appium: {
   //     command: 'appium',
@@ -148,6 +150,7 @@ exports.config = {
       // './src/stepDefinitions/google.steps.js',
       // './src/stepDefinitions/settings.steps.js'
       "./src/stepDefinitions/*.steps.js",
+
     ],
     snippetSyntax: undefined,
     snippets: true,
@@ -178,6 +181,7 @@ exports.config = {
         language: "en",
       },
     ],
+
   ],
   //
   // Options to be passed to Mocha.
@@ -307,11 +311,14 @@ exports.config = {
    * @param {<Object>} results object containing test results
    */
   onComplete: function (exitCode, config, capabilities, results) {
-    // generate({
-    //     jsonDir: './reports/json',
-    //     reportPath: './reports/html',
-    //     openReportInBrowser: true
-    // });
+
+    generate({
+      jsonDir: "./reports/json",
+      reportPath: "./reports/html",
+      openReportInBrowser: true,
+      removeFolders: true
+    });
+
   },
   /**
    * Gets executed when a refresh happens.

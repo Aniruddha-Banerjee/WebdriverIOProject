@@ -20,6 +20,7 @@ Then(/^I click back$/, async () => {
   await ActionHelper.pause(3);
 });
 
+
 When(/^I tap on the (\w+) button$/, async (buttonName) => {
   switch (buttonName.toLowerCase()) {
     case "login":

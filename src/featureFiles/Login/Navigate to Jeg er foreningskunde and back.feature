@@ -1,7 +1,7 @@
 @login
 Feature: Navigate to "Jeg er foreningskunde" and back
 
-@androidApp @local @login
+@androidApp @local @login 
 Scenario: Navigate to "Jeg er foreningskunde" and back
   Given I open the App
   When I tap on the link "Opret Log ind"
