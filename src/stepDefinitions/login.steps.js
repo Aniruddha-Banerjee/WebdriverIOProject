@@ -26,8 +26,8 @@ When(/^I tap on the (\w+) button$/, (buttonName) => {
         ActionHelper.pause(2);
         if(ActionHelper.isVisible(LoginScreen.btnLogin)==true){
             ActionHelper.click(LoginScreen.btnLogin);
+            ActionHelper.pause(2);
         }
-        ActionHelper.pause(2);
         break;
     }    
 });
