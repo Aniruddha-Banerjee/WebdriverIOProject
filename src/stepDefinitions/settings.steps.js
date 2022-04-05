@@ -1,3 +1,5 @@
+/* eslint-disable quotes */
+/* eslint-disable indent */
 const { Given, Then } = require("@cucumber/cucumber");
 
 const SettingsPage = require("./../pages/settings.page");
