@@ -1,7 +1,8 @@
 /* eslint-disable quotes */
 class AndroidInfo {
     static deviceName() {
-        return "Android 10 - API 29 - Pixel XL"; // pass the udid or devicename
+        // return "Android 10 - API 29 - Pixel XL"; // pass the udid or devicename
+        return "Pixel_2_API_29";
     }
 
     static platFormVersion() {

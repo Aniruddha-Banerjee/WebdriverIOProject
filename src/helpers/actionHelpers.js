@@ -1,3 +1,6 @@
+/* eslint-disable array-bracket-newline */
+/* eslint-disable quotes */
+/* eslint-disable indent */
 // const { expect } = require('chai');
 
 class ActionHelper {
@@ -30,11 +33,13 @@ class ActionHelper {
   }
 
   static async isVisible(locator) {
-    return $(locator).isDisplayed() ? true : false;
+    let obj = await $(locator);
+    return await obj.isDisplayed() ? true : false;
   }
 
   static async click(locator) {
-    await $(locator).click();
+    let obj = await $(locator);
+    await obj.click();
   }
 
   static async waitForElement(locator, waitTimeInSeconds) {
@@ -46,7 +51,8 @@ class ActionHelper {
   }
 
   static async sendText(locator, inputText) {
-    await $(locator).addValue(inputText);
+    let obj = await $(locator);
+    await obj.addValue(inputText);
   }
 
   static async getText(locator) {
@@ -56,7 +62,8 @@ class ActionHelper {
   static async setPin(pincode) {
     let arrPin = [...pincode];
     for (const digit of arrPin) {
-      await $("//android.widget.TextView[@text=" + digit + "]").click();
+      let arrPinDigit = await $("//android.widget.TextView[@text=" + digit + "]")
+      await arrPinDigit.click();
       // this.pause(.5);
     }
     await this.pause(2);

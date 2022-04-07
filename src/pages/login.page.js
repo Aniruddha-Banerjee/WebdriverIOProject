@@ -1,3 +1,5 @@
+/* eslint-disable indent */
+/* eslint-disable quotes */
 const ActionHelper = require("./../helpers/actionHelpers");
 require("chai").should();
 
@@ -33,13 +35,9 @@ class LoginPage {
     await ActionHelper.isVisible(locator).should.equal(true);
   }
 
-  // subCheckDisplayed(name) {
-  //     this.verifyDisplay('//*[@text=\'' + name + '\']');
-  // }
-
   async subCheckDisplayed(name) {
     await driver.pause(4000);
-    let obj = await $("//*[@text='" + name + "']");
+    let obj = await $("//*[contains(@text,'" + name + "')]");
     // eslint-disable-next-line no-undef
     await expect(obj).toBeDisplayed();
   }

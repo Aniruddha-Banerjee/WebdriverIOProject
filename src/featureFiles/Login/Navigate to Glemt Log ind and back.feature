@@ -1,7 +1,7 @@
 @login
 Feature: Navigate to "Glemt Log ind" and back
 
-@androidApp @login @local 
+@androidApp @login @local
 Scenario: Navigate to "Glemt Log ind" and back
   Given I open the App
   When I tap on the link "Glemt Log ind"

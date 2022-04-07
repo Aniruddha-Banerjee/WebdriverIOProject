@@ -8,7 +8,6 @@ Scenario: Navigate to "Jeg er foreningskunde" and back
   Then I am on the page label "Opret dit YouSee Login"
   When I tap on the link "Jeg har internet gennem min arbejdsplads"
   Then I am on the page label "Opret dit YouSee Login"
-  Then I click back
-  Then I click back
+  Then I click back 3 times
   Then I am on the Login page
   Then I close the App

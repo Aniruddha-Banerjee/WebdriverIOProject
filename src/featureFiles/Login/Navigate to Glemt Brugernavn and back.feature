@@ -8,6 +8,6 @@ Scenario: Navigate to "Glemt Brugernavn" and back
   Then I am on the page label "Glemt adgangskode"
   When I tap on the link "Benyt mail til at genfinde dit login"
   Then I am on the page label "Glemt Brugernavn"
-  Then I click back
+  Then I click back 2 times
   Then I am on the Login page
   Then I close the App

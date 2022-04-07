@@ -3,7 +3,8 @@ const { Given, When, Then } = require('@cucumber/cucumber');
 const LoginPage = require('./../pages/login.page');
 const ActionHelper = require('./../helpers/actionHelpers');
 const LoginScreen = require('./../screens/native/android/login.screen');
-// const HomeScreen = require('./../screens/native/android/home.screen')
+const HomeScreen = require('./../screens/native/android/home.screen');
+const SettingsScreen = require('./../screens/native/android/setting.screen');
 
 const loginpage = new LoginPage();
 
@@ -20,16 +21,10 @@ Then(/^I click back$/, async () => {
     await ActionHelper.pause(3);
 });
 
-
-When(/^I tap on the (\w+) button$/, (buttonName) => {
-    switch(buttonName.toLowerCase()){
-    case 'login': ActionHelper.click(LoginScreen.btnLogin); 
-        ActionHelper.pause(2);
-        if(ActionHelper.isVisible(LoginScreen.btnLogin)==true){
-            ActionHelper.click(LoginScreen.btnLogin);
-            ActionHelper.pause(2);
-        }
-        break;
+Then(/^I click back (\w+) times$/, async (num) => {
+    for(var i=1;i<=num;i++){
+        await ActionHelper.back();
+        await ActionHelper.pause(1);
     }    
 });
 
@@ -40,6 +35,30 @@ Then(/^I inserts password (\w+)$/, async (password) => {
     await ActionHelper.sendText(LoginScreen.txtbxPassword, password);
 });
 
+When(/^I tap on the (\w+) button$/, async(buttonName) => {
+    switch(buttonName.toLowerCase()){
+    case 'login': await ActionHelper.click(LoginScreen.btnLogin); 
+        await ActionHelper.pause(2);
+        if(await ActionHelper.isVisible(LoginScreen.btnLogin)){
+            await ActionHelper.click(LoginScreen.btnLogin);
+            await ActionHelper.pause(2);
+        }
+        break;
+    case 'help': await ActionHelper.click(HomeScreen.btnHelp); 
+        break;
+    case 'overview': await ActionHelper.click(HomeScreen.btnOverview); 
+        break;
+    case 'bills': await ActionHelper.click(HomeScreen.btnBills); 
+        break;
+    case 'settings': await ActionHelper.click(HomeScreen.btnSettings); 
+        break;
+    case 'shortcutspending': await ActionHelper.click(SettingsScreen.btnShortcutSpending);
+        break;
+    case 'logoff': await ActionHelper.click(SettingsScreen.btnLogOf);
+        break;
+    }    
+});
+
 Then(/^I am on the (\w+) page$/, async (pageName) => {
     switch (pageName.toLowerCase()) {
     case 'overview':
@@ -47,6 +66,18 @@ Then(/^I am on the (\w+) page$/, async (pageName) => {
         break;
     case 'login':
         await loginpage.subCheckDisplayed('Brugernavn');
+        break;
+    case 'help':
+        await loginpage.subCheckDisplayed('velkommen til at kontakte os');
+        break;
+    case 'bills':
+        await loginpage.subCheckDisplayed('Regninger');
+        break;
+    case 'settings':
+        await loginpage.subCheckDisplayed('Indstillinger');
+        break;
+    case 'spending':
+        await loginpage.subCheckDisplayed('Forbrug');
         break;
     }
 });

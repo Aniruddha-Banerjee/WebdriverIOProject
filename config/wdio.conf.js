@@ -118,9 +118,9 @@ exports.config = {
   // commands. Instead, they hook themselves up into the test process.
   services: [
 
-    // ['appium',{
-    //     command: 'appium',
-    // }]
+    ['appium',{
+        command: 'appium',
+    }]
 
   ],
   // appium: {

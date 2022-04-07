@@ -1,3 +1,5 @@
+/* eslint-disable indent */
+/* eslint-disable quotes */
 const { config } = require("./wdio.conf");
 const AndroidInfo = require("./android.info");
 const path = require("path");
@@ -16,6 +18,6 @@ config.capabilities = [
   },
 ];
 
-config.cucumberOpts.tagExpression = "@login"; // pass tag to run tests specific to android
+config.cucumberOpts.tagExpression = "@Test"; // pass tag to run tests specific to android
 
 exports.config = config;
