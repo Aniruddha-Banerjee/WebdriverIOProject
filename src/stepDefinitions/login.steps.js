@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const { Given, When, Then } = require('@cucumber/cucumber');
 
 const LoginPage = require('./../pages/login.page');
@@ -5,6 +6,8 @@ const ActionHelper = require('./../helpers/actionHelpers');
 const LoginScreen = require('./../screens/native/android/login.screen');
 const HomeScreen = require('./../screens/native/android/home.screen');
 const SettingsScreen = require('./../screens/native/android/setting.screen');
+const ForbrugScreen = require('./../screens/native/android/forbrug.screen');
+const d = new Date();
 
 const loginpage = new LoginPage();
 
@@ -56,6 +59,11 @@ When(/^I tap on the (\w+) button$/, async(buttonName) => {
         break;
     case 'logoff': await ActionHelper.click(SettingsScreen.btnLogOf);
         break;
+    // eslint-disable-next-line no-case-declarations
+    case 'calender': let name = await loginpage.getMonth(d.getMonth());
+        // eslint-disable-next-line quotes
+        await ActionHelper.click("//*[contains(@text,'" + name + "')]");
+        break;
     }    
 });
 
@@ -85,6 +93,28 @@ Then(/^I am on the (\w+) page$/, async (pageName) => {
 Then(/^Set pin code (\w+) if asked$/, async (pinCode) => {
     await ActionHelper.setPin(pinCode);
     await ActionHelper.setPin(pinCode);
+});
+
+Then(/^I see a button with calender name$/, async () => {
+    let name = await loginpage.getMonth(d.getMonth());
+    await loginpage.subCheckDisplayed(name);
+});
+
+Then(/^I see a Consumption period popup$/, async () => {
+    await ActionHelper.isVisible(ForbrugScreen.popupForbrug);
+});
+
+Then(/^I see the current Month and Year$/, async () => {
+    let month = await loginpage.getMonth(d.getMonth());
+    let year = await loginpage.getYear();
+    await ActionHelper.isVisible('//*[@text=\'' + month + ' ' + year + '\']');
+});
+
+Then(/^I see the remaing days and next month$/, async () => {
+    const date2 = new Date('1/'+d.getMonth()+1+'/'+d.getYear());
+    const diffTime = Math.abs(date2 - d);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+    await ActionHelper.isVisible('//*[@text="Ny forbrugsperiode starter om '+diffDays+' dage (1. '+loginpage.getMonth(+d.getMonth()+1)+')"]');
 });
 
 When('I tap on the link {string}', async (LinkName) => {
@@ -131,4 +161,9 @@ Then('Test {string}', async (sampleText) => {
     console.log(TextXpath);
     // eslint-disable-next-line no-console
     console.log(await ActionHelper.isVisible(TextXpath));
+});
+
+Then('Step Test', async () => {
+    let name = await loginpage.getMonth(d.getMonth());
+    console.log(name);
 });

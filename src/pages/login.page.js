@@ -9,6 +9,30 @@ class LoginPage {
     return require(`./../screens/native/${platform}/login.screen.js`);
   }
 
+  getMonth(num) {
+    const month = [
+      // eslint-disable-next-line max-len
+      "Januar",
+      "Februar",
+      "Marts",
+      "April",
+      "Maj",
+      "Juni",
+      "Juli",
+      "August",
+      "September",
+      "Oktober",
+      "November",
+      "December",
+    ];
+    return month[num];
+  }
+
+  getYear() {
+    const d = new Date();
+    return d.getYear();
+  }
+
   async launchApp() {
     await ActionHelper.launchApp();
     await ActionHelper.pause(6);
