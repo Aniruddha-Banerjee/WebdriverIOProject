@@ -3,7 +3,6 @@ Feature: Validate forburg calender button
 
   @androidApp @settings @forburg @local @Test
   Scenario Outline: Validate forburg calender button
-    # Given Step Test
     Given I open the App
     Then I inserts username <Username>
     Then I inserts password <Password>
