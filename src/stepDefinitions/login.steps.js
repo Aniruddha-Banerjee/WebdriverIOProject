@@ -57,6 +57,8 @@ When(/^I tap on the (\w+) button$/, async(buttonName) => {
         break;
     case 'shortcutspending': await ActionHelper.click(SettingsScreen.btnShortcutSpending);
         break;
+    case 'shortcutstorybook': await ActionHelper.click(SettingsScreen.btnShortcutStorybook);
+        break;
     case 'logoff': await ActionHelper.click(SettingsScreen.btnLogOf);
         break;
     // eslint-disable-next-line no-case-declarations
@@ -86,6 +88,9 @@ Then(/^I am on the (\w+) page$/, async (pageName) => {
         break;
     case 'spending':
         await loginpage.subCheckDisplayed('Forbrug');
+        break;
+    case 'storybook':
+        await loginpage.subCheckDisplayed('NAVIGATOR');
         break;
     }
 });
