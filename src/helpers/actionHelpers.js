@@ -3,6 +3,8 @@
 /* eslint-disable indent */
 // const { expect } = require('chai');
 
+const { default: $ } = require("webdriverio/build/commands/browser/$");
+
 class ActionHelper {
   static async launchBrowserUrl(urlToLaunch) {
     await browser.url(urlToLaunch);
@@ -32,6 +34,26 @@ class ActionHelper {
     await browser.pause(seconds * 1000);
   }
 
+  // eslint-disable-next-line no-unused-vars
+  static async scrollToView(locator) {
+    await this.pause(4);
+    const mobilePage= await $('//android.webkit.WebView');
+    await browser.swipeDown(mobilePage,1661, 100);
+
+
+
+    // await browser.execute('mobile: scroll', {direction: 'down'})
+    // await this.pause(2);
+    // await browser.execute("mobile: scroll", {direction: 'down'})
+    // await this.pause(2);
+    // await browser.execute(function(elocator){
+    //   // eslint-disable-next-line no-undef
+    //   document.querySelector(elocator).scrollIntoView();
+    // },locator)
+    // let obj = await $(locator);
+    // await obj.scrollIntoView();
+  }
+
   static async isVisible(locator) {
     let obj = await $(locator);
     return await obj.isDisplayed() ? true : false;
@@ -41,6 +63,16 @@ class ActionHelper {
     let obj = await $(locator);
     await obj.click();
   }
+
+  static async getLocation(locator){
+    let obj = await $(locator);
+    let loc = await obj.getLocation();
+    console.log('loc->'+loc);
+    console.log('x->'+await obj.getLocation('x'));
+    console.log('y->'+await obj.getLocation('y'));
+  }
+
+  
 
   static async waitForElement(locator, waitTimeInSeconds) {
     await $(locator).waitForDisplayed(waitTimeInSeconds * 1000);

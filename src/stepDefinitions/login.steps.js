@@ -7,12 +7,15 @@ const LoginScreen = require('./../screens/native/android/login.screen');
 const HomeScreen = require('./../screens/native/android/home.screen');
 const SettingsScreen = require('./../screens/native/android/setting.screen');
 const ForbrugScreen = require('./../screens/native/android/forbrug.screen');
+const BillsScreen = require('./../screens/native/android/bills.screen');
+// const { default: $ } = require('webdriverio/build/commands/browser/$');
 const d = new Date();
 
 const loginpage = new LoginPage();
 
 Given(/^I open the App$/, async () => {
     await loginpage.launchApp();
+    await ActionHelper.pause(3);
 });
 
 Then(/^I close the App$/, async () => {
@@ -61,6 +64,8 @@ When(/^I tap on the (\w+) button$/, async(buttonName) => {
         break;
     case 'logoff': await ActionHelper.click(SettingsScreen.btnLogOf);
         break;
+    case 'firstbill': await ActionHelper.click(BillsScreen.lblFirstBill);
+        break;
     // eslint-disable-next-line no-case-declarations
     case 'calender': let name = await loginpage.getMonth(d.getMonth());
         // eslint-disable-next-line quotes
@@ -92,6 +97,19 @@ Then(/^I am on the (\w+) page$/, async (pageName) => {
     case 'storybook':
         await loginpage.subCheckDisplayed('NAVIGATOR');
         break;
+    }
+});
+
+Then(/^I scroll down to (\w+) Button$/, async (pageName) => {
+    // const elem=null;
+    switch (pageName.toLowerCase()) {
+    case 'firstbill':
+        await ActionHelper.scrollToView(BillsScreen.lblFirstBill);
+        // eslint-disable-next-line no-case-declarations
+        // let elem = await $(BillsScreen.lblFirstBill)    
+        // await elem.scrollIntoView();
+        // break;
+    
     }
 });
 
@@ -169,6 +187,13 @@ Then('Test {string}', async (sampleText) => {
 });
 
 Then('Step Test', async () => {
-    let name = await loginpage.getMonth(d.getMonth());
-    console.log(name);
+    await ActionHelper.pause(5);
+    await ActionHelper.getLocation('//android.view.View[contains(@text,"rste regning fra YouSee")]');
+    console.log('Search object '+await ActionHelper.isVisible('//android.view.View[contains(@text,"rste regning fra YouSee")]'));
+    // const obj = await $('//android.view.View[contains(@text,"rste regning fra YouSee")]');
+    // const loc= await obj.getLocation();
+    // console.log(loc.getLocation('x'));
+    // console.log(loc.getLocation('y'));
+    // await ActionHelper.pause(2);
+    // console.log('Object found: '+await ActionHelper.isVisible(BillsScreen.lblFirstBill));
 });
